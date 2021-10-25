@@ -42,74 +42,100 @@ namespace AutoClick
 
         private void btnStart_Click(object sender, EventArgs e)
         {
-            var t = Task.Run(() =>
-            {
-                while (count != 0)
-                {
-                    Random random = new Random();
-                    int width = Screen.PrimaryScreen.Bounds.Width;
-                    int height = Screen.PrimaryScreen.Bounds.Height;
-
-                    int cursorHeight = random.Next(150, height - 150);
-                    int cursorWidth = random.Next(350, width - 350);
-
-                    int randInt = random.Next(100000, 500000);
-                    //int randInt = random.Next(800, 1500);
-                    this.BeginInvoke(new ThreadStart(delegate
-                    {
-                        lblRandom.Text = $"{randInt.ToString()}";
-                    }));
-
-                    SetCursorPos(cursorWidth, cursorHeight);
-                    //Thread.Sleep(180000);
-                    Thread.Sleep(randInt);
-                    //Thread.Sleep(5000);
-                    mouse_event(MOUSEEVENTF_LEFTDOWN, 0, 300, 300, 0);
-                    mouse_event(MOUSEEVENTF_LEFTUP, 0, 300, 300, 0);
-                    this.BeginInvoke(new ThreadStart(delegate
-                    {
-                        lblCount.Text = totalCount.ToString() + " clicks";
-                    }));
-
-                    totalCount++;
-                }
-            });
-
-            //SetCursorPos(85, 55);
-            //timer.Start();
-            //while (count != 0)
+            timer.Start();
+            //var t = Task.Run(() =>
             //{
-            //    //if (count == 50)
-            //    //{
-            //    //    count = 1;
-            //    //    SetCursorPos(85, 55);
-            //    //    mouse_event(MOUSEEVENTF_LEFTDOWN, 0, 85, 55, 0);
-            //    //    mouse_event(MOUSEEVENTF_LEFTUP, 0, 85, 55, 0);
-            //    //    Thread.Sleep(3000);
-            //    //}
-            //    //else
-            //    //{
-            //    //    lblCount.Text = totalCount.ToString() + " clicks";
-            //    //    lblCount.Update();
-            //    //    SetCursorPos(200, 200);
-            //    //    Thread.Sleep(500);
-            //    //    mouse_event(MOUSEEVENTF_LEFTDOWN, 0, 300, 300, 0);
-            //    //    mouse_event(MOUSEEVENTF_LEFTUP, 0, 300, 300, 0);
-            //    //}
-            //    //count++;
-            //    //totalCount++;
+            //    while (count != 0)
+            //    {
+            //        ////// for all night long
+            //        //Random random = new Random();
+            //        //int width = Screen.PrimaryScreen.Bounds.Width;
+            //        //int height = Screen.PrimaryScreen.Bounds.Height;
 
-            //    lblCount.Text = totalCount.ToString() + " clicks";
-            //    lblCount.Update();
-            //    SetCursorPos(800, 450);
-            //    Thread.Sleep(180000);
-            //    mouse_event(MOUSEEVENTF_LEFTDOWN, 0, 300, 300, 0);
-            //    mouse_event(MOUSEEVENTF_LEFTUP, 0, 300, 300, 0);
-            //}
+            //        //int cursorHeight = random.Next(150, height - 150);
+            //        //int cursorWidth = random.Next(350, width - 350);
+
+            //        //int randInt = random.Next(100000, 500000);
+            //        ////int randInt = random.Next(800, 1500);
+            //        //this.BeginInvoke(new ThreadStart(delegate
+            //        //{
+            //        //    lblRandom.Text = $"{randInt.ToString()}";
+            //        //}));
+
+            //        //SetCursorPos(cursorWidth, cursorHeight);
+            //        ////Thread.Sleep(180000);
+            //        //Thread.Sleep(randInt);
+            //        ////Thread.Sleep(5000);
+            //        //mouse_event(MOUSEEVENTF_LEFTDOWN, 0, 300, 300, 0);
+            //        //mouse_event(MOUSEEVENTF_LEFTUP, 0, 300, 300, 0);
+            //        //this.BeginInvoke(new ThreadStart(delegate
+            //        //{
+            //        //    lblCount.Text = totalCount.ToString() + " clicks";
+            //        //}));
+
+            //        //totalCount++;
+
+            //        ////// for pump halloween coins
+            //        //Random random = new Random();
+            //        int width = Screen.PrimaryScreen.Bounds.Width;
+            //        int height = Screen.PrimaryScreen.Bounds.Height;
+
+            //        //int cursorHeight = random.Next(150, height - 150);
+            //        //int cursorWidth = random.Next(350, width - 350);
+
+            //        //int randInt = random.Next(100000, 500000);
+            //        //int randInt = random.Next(800, 1500);
+            //        //this.BeginInvoke(new ThreadStart(delegate
+            //        //{
+            //        //    lblRandom.Text = $"{randInt.ToString()}";
+            //        //}));
+
+            //        SetCursorPos((width / 2) - 100, (height / 2));
+            //        //Thread.Sleep(180000);
+            //        Thread.Sleep(1000);
+            //        //Thread.Sleep(5000);
+            //        mouse_event(MOUSEEVENTF_LEFTDOWN, 0, 300, 300, 0);
+            //        mouse_event(MOUSEEVENTF_LEFTUP, 0, 300, 300, 0);
+            //        Thread.Sleep(10);
+
+            //        SetCursorPos((width / 2) + 100, (height / 2));
+            //        //Thread.Sleep(180000);
+            //        Thread.Sleep(1000);
+            //        //Thread.Sleep(5000);
+            //        mouse_event(MOUSEEVENTF_LEFTDOWN, 0, 300, 300, 0);
+            //        mouse_event(MOUSEEVENTF_LEFTUP, 0, 300, 300, 0);
+            //        Thread.Sleep(10);
+            //    }
+            //});
         }
+
+        private int i = 0;
+        private int width = Screen.PrimaryScreen.Bounds.Width;
+        private int height = Screen.PrimaryScreen.Bounds.Height;
 
         private void timer_Tick(object sender, EventArgs e)
         {
+            Thread.Sleep(1000);
+            if (i == 0)
+            {
+                //SetCursorPos((width / 2) - 100, (height / 2));
+                SetCursorPos((width / 2), (height / 2));
+
+                mouse_event(MOUSEEVENTF_LEFTDOWN, 0, 300, 300, 0);
+                mouse_event(MOUSEEVENTF_LEFTUP, 0, 300, 300, 0);
+                Thread.Sleep(10);
+                i++;
+            }
+            Thread.Sleep(1000);
+            if (i == 1)
+            {
+                //SetCursorPos((width / 2) + 100, (height / 2));
+                SetCursorPos((width / 2), (height / 2));
+                mouse_event(MOUSEEVENTF_LEFTDOWN, 0, 300, 300, 0);
+                mouse_event(MOUSEEVENTF_LEFTUP, 0, 300, 300, 0);
+                Thread.Sleep(10);
+                i = 0;
+            }
         }
 
         private void frmMain_KeyDown(object sender, KeyEventArgs e)
@@ -122,8 +148,10 @@ namespace AutoClick
 
         private void btnStop_Click(object sender, EventArgs e)
         {
-            count = 0;
-            Thread.Sleep(10);
+            //count = 0;
+            //Thread.Sleep(10);
+            //Thread.CurrentThread.Abort();
+            timer.Stop();
         }
     }
 }
